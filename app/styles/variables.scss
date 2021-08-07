@@ -1,0 +1,30 @@
+// 1. Basic
+// ==========================================================================
+$white: #fff !default;
+$body-color: #F6F8FA !default;
+
+$link-color: #2d4149 !default;
+
+$primary-color: custom-color('custom-grey', 'base') !default;
+$primary-color-light: lighten($primary-color, 15%) !default;
+$primary-color-dark: darken($primary-color, 15%) !default;
+
+$secondary-color: custom-color('custom-cyan', 'darken-1') !default;
+
+$success-color: color('green', 'base') !default;
+$error-color: custom-color('custom-red', 'base') !default;
+
+// 2. Table
+// ==========================================================================
+$table-row-bg: custom-color('custom-grey', 'lighten-1') !default;
+$spacer: 16px !default;
+$table-bg: transparent !default;
+$table-cell-padding: 0.75rem !default;
+$table-border-width: 1px !default;
+$table-border-color: custom-color('custom-grey', 'lighten-1') !default;
+
+// 3. Chips
+// ==========================================================================
+$chip-bg-color: custom-color('custom-blue', 'base') !default;
+$chip-border-color: custom-color('custom-blue', 'darken-4') !default;
+$chip-selected-color: custom-color('custom-blue', 'darken-1') !default;

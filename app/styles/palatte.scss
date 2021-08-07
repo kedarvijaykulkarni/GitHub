@@ -1,0 +1,124 @@
+// Utility Color Classes
+
+// Google Color Palette defined: http://www.google.com/design/spec/style/color.html
+// how to add cusom color in materail
+// https://medium.com/@mancebo128/how-to-properly-add-custom-colors-to-materialize-css-52e5e4c58d58
+
+$custom-red: (
+  'base': #f44336,
+  'darken-1': #ab521e,
+  'darken-2': #d32f2f,
+);
+
+$custom-cyan: (
+  'base': #00c1cf,
+  'darken-1': #08b4c1,
+  'darken-2': #05a3af,
+  'darken-3': #56cbd3,
+  'lighten-1': #a1e2eb,
+);
+
+$custom-grey: (
+  'base': #646464,
+  'lighten-7': #ececec,
+  'lighten-6': #b7b7b7,
+  'lighten-5': #fafafa,
+  'lighten-4': #ebebeb,
+  'lighten-3': #f9f9f9,
+  'lighten-2': #949494,
+  'lighten-1': #f2f2f2,
+  'darken-1': #3a3a3a,
+  'darken-2': #616161,
+  'darken-3': #424242,
+  'darken-4': #c7c7c7,
+  'darken-5': #909090,
+  'darken-6': #cccccc,
+  'darken-7': #777777,
+  'darken-9': #1d1d1d,
+  'darken-10': #131313,
+);
+
+$custom-blue: (
+  'base': #4285f4,
+  'lighten-6': #80adf8,
+  'lighten-5': #5e97f6,
+  'lighten-4': #7baaf7,
+  'lighten-3': #a1c2fa,
+  'lighten-2': #c6dafc,
+  'lighten-1': #e8f0fe,
+  'darken-1': #3c7df3,
+  'darken-2': #3372f1,
+  'darken-3': #2b68ef,
+  'darken-4': #1d55ec,
+);
+
+$shades: (
+  'black': #000000,
+  'white': #ffffff,
+  'standby': #7d9cad,
+  'preheating': #ff9342,
+  'readytobake': #97ed8a,
+  'baking': #53a100,
+  'donebaking': #ffbe35,
+  'canceledbaking': #d73e3f,
+  'continuebaking': #23cee8,
+  'unknown': #a1a5ac,
+  'cleaning': #2a1bff,
+  'modeeconomical': #ceff37,
+  'transparent': transparent,
+);
+
+$custom-colors: (
+  'custom-red': $custom-red,
+  'custom-cyan': $custom-cyan,
+  'custom-grey': $custom-grey,
+  'custom-blue': $custom-blue,
+  'shades': $shades,
+);
+
+// Color Classes
+@each $color_name, $color in $custom-colors {
+  @each $color_type, $color_value in $color {
+    @if $color_type == 'base' {
+      .#{$color_name} {
+        background-color: $color_value !important;
+      }
+      .#{$color_name}-text {
+        color: $color_value !important;
+      }
+    } @else if $color_name != 'shades' {
+      .#{$color_name}.#{$color_type} {
+        background-color: $color_value !important;
+      }
+      .#{$color_name}-text.text-#{$color_type} {
+        color: $color_value !important;
+      }
+    }
+  }
+}
+
+// Shade classes
+@each $color, $color_value in $shades {
+  .#{$color} {
+    background-color: $color_value !important;
+  }
+  .#{$color}-text {
+    color: $color_value !important;
+  }
+}
+
+// usage: color("name_of_color", "type_of_color")
+// to avoid to repeating map-get($custom-colors, ...)
+@function custom-color($color, $type) {
+  @if map-has-key($custom-colors, $color) {
+    $curr_color: map-get($custom-colors, $color);
+    @if map-has-key($curr_color, $type) {
+      @return map-get($curr_color, $type);
+    }
+  }
+
+  @warn $color;
+
+  @warn "Unknown `#{name}` in $custom-colors.";
+  @return null;
+}

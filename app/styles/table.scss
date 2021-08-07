@@ -1,0 +1,41 @@
+.table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: $spacer;
+	background-color: $table-bg; // Reset for nesting within parents with `background-color`.
+	border-collapse: collapse; // Prevent double borders
+	th,
+	td {
+		padding: $table-cell-padding;
+		vertical-align: top;
+		border-top: $table-border-width solid $table-border-color;
+	}
+
+	thead th {
+		vertical-align: bottom;
+		border-bottom: (2 * $table-border-width) solid $table-border-color;
+	}
+
+	tbody + tbody {
+		border-top: (2 * $table-border-width) solid $table-border-color;
+	}
+}
+
+.list-video-games-table {
+	thead tr {
+		background-color: custom-color('custom-cyan', 'lighten-1');
+		th button > i {
+			display: inline-block;
+			height: 16px;
+			position: relative;
+			top: 2px;
+			content: url('/assets/images/default.png');
+			&.no-sort {
+				content: '';
+			}
+		}
+	}
+	tbody tr:nth-of-type(odd) {
+		background-color: $table-row-bg;
+	}
+}

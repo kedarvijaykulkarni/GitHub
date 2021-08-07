@@ -1,10 +1,24 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const Funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
+    sassOptions: {
+      includePaths: [
+        'node_modules/tachyons-sass'
+      ]
+    },
+    'ember-cli-babel': {
+      includePolyfill: true
+    }
+  });
+  const robotoFonts = new Funnel('public/assets/fonts/roboto', {
+    srcDir: '/',
+    include: ['*.woff', '*.ttf', '*.woff2'],
+    destDir: '/fonts/roboto'
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -20,5 +34,5 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
+  return app.toTree([robotoFonts]);
 };

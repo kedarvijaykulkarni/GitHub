@@ -1,11 +1,11 @@
 {
   "name": "git-hub",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
-  "description": "Small description for git-hub goes here",
+  "description": "User should be able to enter their GitHub organization name and the app would show their repositories.",
   "repository": "",
   "license": "MIT",
-  "author": "",
+  "author": "kedarvijaykulkarni@gmail.com",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -29,6 +29,7 @@
     "ember-cli-eslint": "^5.1.0",
     "ember-cli-htmlbars": "^4.0.5",
     "ember-cli-inject-live-reload": "^2.0.1",
+    "ember-cli-sass": "^10.0.1",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-template-lint": "^1.0.0-beta.3",
     "ember-cli-uglify": "^3.0.0",
@@ -44,7 +45,9 @@
     "eslint-plugin-ember": "^7.1.0",
     "eslint-plugin-node": "^10.0.0",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.9.0"
+    "qunit-dom": "^0.9.0",
+    "sass": "^1.37.5",
+    "tachyons-sass": "kedarvijaykulkarni/tachyons-sass#fix/deprecation-warning-with-dart-sass"
   },
   "engines": {
     "node": "8.* || >= 10.*"
