@@ -4,5 +4,9 @@
     <p class="tc">GitHub public and private repositories for a GitHub organization.</p>
     <p class="tc">User should be able to enter their GitHub organization name and the app would show their repositories.</p>
     {{outlet}}
+
+    <p class="tc" data-link="link-repositories">Checkout {{#link-to "repositories" class="dib"}}<span data-link="text-repositories">Repositories</span>{{/link-to}} ...</p>
+    {{outlet}}
+    <p class="tc">Checkout <a href="/tests?dockcontainer" target="_blank" rel="noopener" data-link="tests">Application test cases</a> ...</p>
   </div>
 </div>

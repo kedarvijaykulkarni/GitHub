@@ -17,8 +17,12 @@
     line-height: 1.9;
     text-decoration: none;
     box-shadow: inset 0px -3px transparent;
+    &:hover {
+      color: #FFFFFF;
+    }
     &.active {
-      box-shadow: inset 0px -3px $link-color;
+      color: #FFFFFF;
+      box-shadow: inset 0px -3px #f86c4f;
     }
   }
 }
