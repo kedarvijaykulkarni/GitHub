@@ -1,9 +1,15 @@
 import Route from '@ember/routing/route';
+import RSVP from 'rsvp';
 import fetchJsonp from 'fetch-jsonp';
 
 
 export default Route.extend({
-  async model() {
+  queryParams: {
+    accessToken: {
+      refreshModel: true,
+    }
+  },
+  async model(param) {
     /*
       // Following is not working giving me a CORS error
       // https://api.emberjs.com/ember-data/3.14/classes/JSONAPIAdapter/methods/query?anchor=query
@@ -14,7 +20,17 @@ export default Route.extend({
         }
         return this.store.query('repositories', query);
     */
-    const accessToken = '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';
+    const accessToken = param.accessToken;
+
+    return RSVP.hash({
+      query: param, // just added if we use server side sorting
+      repositories: this.query(accessToken),
+    });
+  },
+
+  async getRepo(accessToken) {
+    //const accessToken = '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';
+    console.log('accessToken :::', accessToken)
     const urlString = `https://api.github.com/user/repos?per_page=10&page=2&access_token=${accessToken}`;
     const headers = {
       method: 'GET',
@@ -32,7 +48,11 @@ export default Route.extend({
       data['languages'] = await fetchJsonp(`https://api.github.com/repos/${data['full_name']}/languages?access_token=${accessToken}`, headers)
         .then((response) => response.json()).then((branches) => branches.data);
     })
+    return response.data
+  },
 
-    return await response.data;
-  }
+  setupController(controller, model) {
+    // Call _super for default behavior
+    this._super(controller, model);
+  },
 });

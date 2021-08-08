@@ -1,0 +1,35 @@
+<thead>
+  <tr>
+    {{#each headers as |header|}}
+      {{list-repositories/th-button
+        title=header.title
+        className=header.className
+        sortField=header.sortfield
+        isSortedAsc=isSortedAsc
+        isSortable=header.isSortable
+        sortData=(action "sortData")
+      }}
+    {{/each}}
+    <th data-text="th-action">&nbsp;</th>
+  </tr>
+</thead>
+<tbody>
+  {{#each dataSorted as |repository|}}
+
+  {{log 'repository' repository.branches}}
+    <tr>
+      <td data-test="td-name">{{repository.name}}</td>
+      <td data-test="td-num-branches" align="center">
+        {{repository.branches.length}}
+        <ul>
+          {{#each repository.branches as |branch|}}
+            <li>{{branch.name}}</li>
+          {{/each}}
+        </ul>
+      </td>
+      <td data-test="td-tags">{{get repository 'languages'}}</td>
+      <td data-test="td-release-date">{{moment-format repository.updated_at "DD-MM-YYYY"}}</td>
+
+    </tr>
+  {{/each}}
+</tbody>
