@@ -60,6 +60,10 @@ Specify what it takes to deploy your app.
   * for Organisation https://api.github.com/orgs/google/repos?per_page=10&page=1
   * for user https://api.github.com/users/google/repos?per_page=10&page=1
 
+## List repos
+   `/user/repos/?access_token=XXX`
+   Example - https://api.github.com/user/repos?per_page=10&page=2&access_token=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
+
 ### List branches 
     Documentation URL - https://docs.github.com/en/rest/reference/repos#list-branches
     `/repos/{owner}/{repo}/branches`
