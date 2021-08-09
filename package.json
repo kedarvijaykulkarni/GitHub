@@ -56,8 +56,5 @@
   },
   "engines": {
     "node": "8.* || >= 10.*"
-  },
-  "resolutions": {
-    "whatwg-fetch": "3.3.1"
   }
 }

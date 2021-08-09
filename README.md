@@ -16,7 +16,7 @@ You will need the following things properly installed on your computer.
 
 * `git clone <repository-url>` this repository
 * `cd git-hub`
-* `npm install`
+* `yarn install`
 
 ## Running / Development
 
@@ -64,7 +64,7 @@ Specify what it takes to deploy your app.
    `/user/repos/?access_token=XXX`
    Example - https://api.github.com/user/repos?per_page=10&page=2&access_token=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
 
-### List branches 
+### List branches
     Documentation URL - https://docs.github.com/en/rest/reference/repos#list-branches
     `/repos/{owner}/{repo}/branches`
     Example - https://api.github.com/repos/google/truth/branches
