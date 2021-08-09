@@ -7,6 +7,8 @@ export default Component.extend({
 
   accessToken: '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',
 
+  isTokenEmpty: true,
+
   repositories: null,
 
   filterRepositories: computed('isPrivate', 'repositories', function() {
@@ -63,7 +65,7 @@ export default Component.extend({
 
   actions: {
     submitToken() {
-      if (!this.accessToken) return;
+      if (!this.accessToken && !this.isOrg) return;
       this.getRepositories();
     },
     next() {

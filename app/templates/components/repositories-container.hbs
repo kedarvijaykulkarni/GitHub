@@ -40,9 +40,14 @@
       @value={{accessToken}}
       @onChange={{action (mut accessToken)}}
     />
+    {{#if (and (eq accessToken "") (not isOrg))}}
+      <p class="error">Access token is required! <br> Not have access token? <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" rel="noopener">How to create?</a></p>
+    {{/if}}
   </p>
 
-  <button {{action "submitToken"}} title="The Default Personal access tokens is set for the https://github.com/kedarvijaykulkarni which expire on 13th Aug 2021">Submit Token</button>
+  <button {{action "submitToken"}} title="The Default Personal access tokens is set for the https://github.com/kedarvijaykulkarni which expire on 13th Aug 2021">
+    Submit {{#if (not isOrg)}}Token{{/if}}
+  </button>
 
   {{#if (and repositories  (not isOrg))}}
     <p>
@@ -59,8 +64,8 @@
   {{#if isOrg}}
     <p class="error">
       In Organisation API there are no PRIVATE repositories. <a href="https://stackoverflow.com/questions/21907278/github-api-using-repo-scope-but-still-cant-see-private-repos" target="_blank" rel="noopener">Check here</a>
-      <br>To view private repositories for the Organisation set up the access token via <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" rel="noopener">this method</a>,
-      and uncheck the Organisation checkbox and put access-token in the given text-box.
+      <br>To view private repositories for the Organisation, please set up the access token via <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" rel="noopener">this method</a>,
+      uncheck the Organisation checkbox and put access-token in the given text-box, and submit the token.
     </p>
   {{/if}}
 

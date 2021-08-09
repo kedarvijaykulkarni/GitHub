@@ -14,7 +14,7 @@
     "build": "ember build",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
-    "start": "ember serve  --environment development --proxy https://api.github.com/",
+    "start": "ember serve",
     "test": "ember test"
   },
   "devDependencies": {
