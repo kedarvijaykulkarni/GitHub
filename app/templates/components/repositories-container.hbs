@@ -57,9 +57,11 @@
   {{/if}}
 
   {{#if isOrg}}
-    <p class="error">In Organisation API there are no PRIVATE repositories. <a href="https://stackoverflow.com/questions/21907278/github-api-using-repo-scope-but-still-cant-see-private-repos" target="_blank" rel="norefer">Check here</a>
-    <br/>To view private repositories for the Organisation set up the access token via <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" rel="noreffer">this method</a>,
-      and uncheck the Organisation checkbox and put access-token in the given text-box.</p>
+    <p class="error">
+      In Organisation API there are no PRIVATE repositories. <a href="https://stackoverflow.com/questions/21907278/github-api-using-repo-scope-but-still-cant-see-private-repos" target="_blank" rel="noopener">Check here</a>
+      <br>To view private repositories for the Organisation set up the access token via <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" rel="noopener">this method</a>,
+      and uncheck the Organisation checkbox and put access-token in the given text-box.
+    </p>
   {{/if}}
 
   {{#if repositories }}
