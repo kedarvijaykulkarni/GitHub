@@ -11,7 +11,7 @@ $primary-color-dark: darken($primary-color, 15%) !default;
 
 $secondary-color: custom-color('custom-cyan', 'darken-1') !default;
 
-$success-color: color('green', 'base') !default;
+$success-color: custom-color('shades', 'baking') !default;
 $error-color: custom-color('custom-red', 'base') !default;
 
 // 2. Table

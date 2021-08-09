@@ -70,6 +70,14 @@ html {
     }
   }
 
-  .container {
-    padding: 15px;
-  }
+.container {
+  padding: 15px;
+}
+
+.error {
+  color: $error-color;
+}
+
+.success {
+  color: $success-color;
+}

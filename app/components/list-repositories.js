@@ -16,7 +16,7 @@ export default Component.extend({
   selectedLang: 'all',
 
   languages: computed('data', function() {
-    return [...new Set(this.data.map(l => l.language).filter(d => d != null))];
+    return [...new Set(this.data?.map(l => l.language).filter(d => d != null))];
   }),
 
   dataSorted: computed('data', 'orderBy', 'isSortedAsc', 'selectedLang', function () {
