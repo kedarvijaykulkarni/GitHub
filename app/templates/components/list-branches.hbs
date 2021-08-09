@@ -1,0 +1,8 @@
+<button {{action "showHide"}}><span class="material-icons">{{icon}}</span></button>
+<div>
+  {{#if isShow}}
+    {{#each data as |branch|}}
+      <span class="tag branch {{eq defaultBranch branch.name}}">{{branch.name}}</span>
+    {{/each}}
+  {{/if}}
+</div>

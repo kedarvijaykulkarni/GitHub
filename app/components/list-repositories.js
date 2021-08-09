@@ -13,14 +13,25 @@ export default Component.extend({
 
   order: 'dsc',
 
-  dataSorted: computed('data', 'orderBy', 'isSortedAsc', function () {
+  selectedLang: 'all',
+
+  languages: computed('data', function() {
+    return [...new Set(this.data.map(l => l.language).filter(d => d != null))];
+  }),
+
+  dataSorted: computed('data', 'orderBy', 'isSortedAsc', 'selectedLang', function () {
     if (isEmpty(this.orderBy)) {
       return this.data;
     }
 
+    let data = this.data;
+
+    if(this.selectedLang !== 'all')
+      data = data.filter((d) => d.language == this.selectedLang)
+
     return this.isSortedAsc
-      ? this.data.sortBy(this.orderBy)
-      : this.data.sortBy(this.orderBy).reverse();
+      ? data.sortBy(this.orderBy)
+      : data.sortBy(this.orderBy).reverse();
   }),
 
   isSortedAsc: computed('order', function () {
@@ -62,6 +73,8 @@ export default Component.extend({
 
   actions: {
     sortData(sortOn) {
+      if (!this.data) return;
+
       if (this.orderBy != sortOn) {
         set(this, 'isSortedAsc', true);
         set(this, 'order', 'asc');
@@ -70,6 +83,20 @@ export default Component.extend({
         set(this, 'order', this.isSortedAsc ? 'asc' : 'dsc');
       }
       set(this, 'orderBy', sortOn);
+    },
+    selectLanguage (target) {
+      set(this, 'selectedLang', target);
+      this.send('sortData', 'name')
+    },
+    previous() {
+      if(this.previous) {
+        this.previous();
+      }
+    },
+    next() {
+      if(this.next) {
+        this.next();
+      }
     }
   },
 });

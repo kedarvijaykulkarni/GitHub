@@ -1,18 +1,1 @@
-{{!outlet}}
-
-<div class="container">
-
-  <h1 data-test="table-title">Repositories</h1>
-
-  <label for="facebook">Facebook</label>
-  <Input @id="facebook" @value="http://www.facebook.com" />
-
-
-{{log 'model' model}}
-  <ListRepositories
-    @data={{model.repositories}}
-    @query={{model.query}}
-  />
-
-</div>
-
+<RepositoriesContainer />

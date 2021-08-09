@@ -1,8 +1,20 @@
 .tag {
-	background: custom-color('custom-cyan', 'darken-3');
 	font-weight: 400;
 	font-size: 14px;
-	color: $white;
 	border-radius: 8px;
 	padding: 5px 10px;
+	border:  1px solid custom-color('custom-gray', 'darken-3');
+	white-space: nowrap;
+}
+.private {
+	border-color: custom-color('custom-cyan', 'darken-3');;
+	background: custom-color('custom-cyan', 'darken-3');
+	color: white;
+}
+
+.branch {
+	padding: 0 5px;
+	&.true {
+		@extend .private;
+	}
 }

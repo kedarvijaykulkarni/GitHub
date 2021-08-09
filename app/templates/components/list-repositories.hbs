@@ -10,26 +10,63 @@
         sortData=(action "sortData")
       }}
     {{/each}}
-    <th data-text="th-action">&nbsp;</th>
+    <th data-text="th-action">
+      <select name="language" id="language"  onchange={{action "selectLanguage" value="target.value"}}>
+        <option value="all">All</option>
+        {{#each languages as |lang|}}
+          <option value={{lang}}>{{lang}}</option>
+        {{/each}}
+      </select>
+    </th>
   </tr>
 </thead>
 <tbody>
-  {{#each dataSorted as |repository|}}
-
-  {{log 'repository' repository.branches}}
+  {{#if dataSorted}}
+    {{#each dataSorted as |repository|}}
+      <tr>
+        <td data-test="td-name">
+          {{repository.name}}
+          {{#if repository.private}}
+            <span class="tag private">Private</span>
+          {{else}}
+            <span class="tag">Public</span>
+          {{/if}}
+          <a
+            href={{repository.html_url}}
+            title={{repository.name}}
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="material-icons">launch</span>
+          </a>
+        </td>
+        <td class="w-40" data-test="td-num-branches" align="center">
+          {{repository.branches.length}}
+          {{#if repository.branches}}
+            <ListBranches
+              @data={{repository.branches}}
+              @defaultBranch={{repository.default_branch}}
+            />
+          {{/if}}
+        </td>
+        <td data-test="td-language">{{repository.language}}</td>
+        <td data-test="td-release-date">{{moment-format repository.updated_at "DD-MM-YYYY"}}</td>
+        <td data-text="td-action">&nbsp;</td>
+      </tr>
+    {{/each}}
+  {{else}}
     <tr>
-      <td data-test="td-name">{{repository.name}}</td>
-      <td data-test="td-num-branches" align="center">
-        {{repository.branches.length}}
-        <ul>
-          {{#each repository.branches as |branch|}}
-            <li>{{branch.name}}</li>
-          {{/each}}
-        </ul>
+      <td colspan="5" class="tc">
+        <h2>No data</h2>
       </td>
-      <td data-test="td-tags">{{get repository 'languages'}}</td>
-      <td data-test="td-release-date">{{moment-format repository.updated_at "DD-MM-YYYY"}}</td>
-
     </tr>
-  {{/each}}
+  {{/if}}
 </tbody>
+<tfoot>
+  <tr>
+    <td colspan="5" class="tr">
+      <button {{action "previous"}} disabled={{isPreviousDisable}}><span class="material-icons">navigate_before</span></button>
+      <button {{action "next"}} disabled={{isNextDisable}}><span class="material-icons">navigate_next</span></button>
+    </td>
+  </tr>
+</tfoot>

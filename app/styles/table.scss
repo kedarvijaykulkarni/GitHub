@@ -2,7 +2,8 @@
 	width: 100%;
 	max-width: 100%;
 	margin-bottom: $spacer;
-	background-color: $table-bg; // Reset for nesting within parents with `background-color`.
+	margin-top: $spacer;
+	// background-color: $table-bg; // Reset for nesting within parents with `background-color`.
 	border-collapse: collapse; // Prevent double borders
 	th,
 	td {
@@ -21,9 +22,9 @@
 	}
 }
 
-.list-video-games-table {
+.list-repositories-table {
 	thead tr {
-		background-color: custom-color('custom-cyan', 'lighten-1');
+		background-color: custom-color('custom-grey', 'lighten-3');
 		th button > i {
 			display: inline-block;
 			height: 16px;

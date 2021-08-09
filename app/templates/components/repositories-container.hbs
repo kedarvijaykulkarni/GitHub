@@ -1,0 +1,46 @@
+<div class="container">
+  <h1 data-test="title">Repositories</h1>
+
+  <label for="per-page">item per page</label>
+  <Input
+    @id="per-page"
+    @value={{perPage}}
+    @onChange={{action (mut perPage)}}
+  />
+
+  <label for="access-token">Access Token</label>
+  <Input
+    @id="access-token"
+    @value={{accessToken}}
+    @onChange={{action (mut accessToken)}}
+  />
+
+
+
+  <button {{action "submitToken"}}>Submit Token</button>
+
+  <label for="private-checkbox">Private Ronly</label>
+
+  <Input
+    @id="private-checkbox"
+    @type="checkbox"
+    @checked={{this.isPrivate}}
+    disabled={{isDisable}}
+  />
+
+  {{#if repositories }}
+    {{#if isRunning}}
+      loading...
+    {{else}}
+      <ListRepositories
+        @data={{filterRepositories}}
+        class="bg-white"
+        @next={{action "next"}}
+        @previous={{action "previous"}}
+        @isNextDisable={{isNextDisable}}
+        @isPreviousDisable={{isPreviousDisable}}
+      />
+    {{/if}}
+  {{/if}}
+
+</div>
