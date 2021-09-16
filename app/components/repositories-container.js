@@ -11,7 +11,7 @@ export default Component.extend({
 
   repositories: null,
 
-  filterRepositories: computed('isPrivate', 'repositories', function() {
+  filterRepositories: computed('isPrivate', 'repositories', function () {
     return this.isPrivate
       ? this.repositories.filter((repo) => repo.private)
       : this.repositories;
@@ -40,8 +40,22 @@ export default Component.extend({
     set(this, 'isDisable', true);
 
     const repositories = this.isOrg
-     ? await this.apiGithub.getRepositories(this.perPage, this.page, this.accessToken, this.isOrg, this.orgName)
-     : await this.apiGithub.getRepositories(this.perPage, this.page, this.accessToken);
+      ? await this.apiGithub.getRepositories(
+          this.perPage,
+          this.page,
+          this.accessToken,
+          this.isOrg,
+          this.orgName
+        )
+      : await this.apiGithub.getRepositories(
+          this.perPage,
+          this.page,
+          this.accessToken
+        );
+
+    console.log('repositories ::', repositories);
+    console.log('meta ::', repositories.meta);
+    console.log('Link ::', repositories.Link);
 
     // for next previous page enable disable
     if (repositories && repositories.meta && repositories.meta.Link) {
@@ -54,11 +68,10 @@ export default Component.extend({
         return data[1].rel === 'prev';
       });
       set(this, 'isPreviousDisable', previous.length ? false : true);
-
     } else {
       set(this, 'isNextDisable', true);
     }
-    set(this, 'repositories', repositories.data)
+    set(this, 'repositories', repositories);
     set(this, 'isRunning', false);
     set(this, 'isDisable', false);
   },
@@ -70,14 +83,14 @@ export default Component.extend({
     },
     next() {
       this.page += 1;
-      if(this.accessToken) this.getRepositories();
+      if (this.accessToken) this.getRepositories();
     },
     previous() {
-      if(this.page > 1 ) this.page -= 1;
-      if(this.accessToken) this.getRepositories();
+      if (this.page > 1) this.page -= 1;
+      if (this.accessToken) this.getRepositories();
     },
     resetResults() {
-      set(this, 'repositories' , null);
-    }
-  }
+      set(this, 'repositories', null);
+    },
+  },
 });
